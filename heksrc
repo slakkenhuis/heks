@@ -1,0 +1,110 @@
+# Constants help to assign "concepts" to keys and change them globally
+SOCKET=/tmp/heks.socket
+LEFT=a
+RIGHT=d
+UP=w
+DOWN=s
+
+# Groups help to organize keybindings for automatic generation of spreadsheets.
+group window-manager
+    label
+        Anything that relates to window managers
+
+group movement
+    label
+        Movement
+
+    subgroup window-manager
+
+    tags
+        window-manager,
+
+
+# An attach directive includes the keybindings defined in another file. This
+# can be done on-the-fly!
+attach /etc/heks/ff.heks ~/.config/heks/ff.heks as ff
+
+# Delayed attachment only adds 
+attach /etc/heks/ff.heks ~/.config/heks/ff.heks delayed as ff
+
+# All but the global keybindings can be detached, too
+detach ff
+detach ff tags movement
+
+# A global context constraints all the keybindings defined *in the current file*
+context
+    mode window-manager
+    constraint
+
+# A keystroke prefixed with * is a keydown event; a keystroke suffixed with *
+# is a keyup event; keystroke suffixed with {} is an interval. Prefixing with !
+# excludes the possibility of pressing any other key. "any except space" is a
+# special syntax to catch ANY key except the given one.
+# Keycodes/scancodes/keysyms are both supported. What about early actions?
+ctrl + [modifier] + <horizontal> ;{<300ms} <horizontal>*
+    
+    mode exit all except default
+    mode enter window-manager
+
+    tag movement
+
+    label 
+        Go <modifier> to the <horizontal>
+
+    keystroke
+        passthrough
+
+    action dbus org.freedesktop.ExampleName
+        etcetera
+
+    action keystroke
+        ctrl + c
+
+    action interpreter /bin/sh 
+        echo "something"
+
+    action socket $SOCKET
+        {"command":"<modifier>","args":["<horizontal>"]}
+
+    optional variable modifier
+        default
+            label null
+            action
+                once
+        alt 
+            label
+                all the way
+            action
+                loop
+
+    variable horizontal
+        <digits>+$LEFT
+            label
+                left
+            action
+                west
+        <digits>+$RIGHT
+            label
+                right
+            action
+                east
+
+    optional variable digits
+        builtin digits
+
+
+
+    context
+        mode window-manager
+        constraint current window to not firefox
+
+meta
+    escape escape
+    escape ctrl + c
+    backspace backspace
+
+
+# Events other than keyboard ones can be handled too.
+x-new-window
+    action /usr/bin/stilish
+        attach <xwindowid>

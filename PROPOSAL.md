@@ -43,17 +43,22 @@ Behavioural:
     them when they close.
 
 -   There are different ways to communicate with any particular program (UNIX 
-    sockets, DBUS, one-time command execution...). The library should expose 
-    methods for communication and command parsing.
+    sockets, DBUS, one-time command execution, passing a different keystroke 
+    to a program...). The library should expose methods for communication and 
+    command parsing.
 
 -   Shortcuts can be filtered: perhaps it is only active when this or that 
     program is running, or when a particular mode is active. Some modes are 
     permanent until explicitly changed, some disable all other keys, etcetera.
 
 -   Keystrokes can be active on keydown, keyup, or even after a defined 
-    keypress interval. Keys can be defined in terms of keysyms or keycodes. 
-    Variables can be drawn from regexes or dictionaries, and each variable 
-    comes with a "description" too. Variables can be recursive.
+    keypress interval. Keys can be defined in terms of keysyms or keycodes 
+    (scancodes?). Variables can be drawn from regexes or dictionaries, and 
+    each variable comes with a "description" too. Variables can be recursive. 
+    There should be a way to say that a particular keyup will trigger 
+    something only IF there is no other key being pressed (a so-called "tap"). 
+    There should be an optional modifier too - something that, when typed 
+    before or during another key, slightly modifies the action.
 
 -   There should be a robust way to handle conflicting keybindings. (Monoid?)
 
