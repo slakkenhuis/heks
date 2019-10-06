@@ -58,9 +58,14 @@ Behavioural:
     There should be a way to say that a particular keyup will trigger 
     something only IF there is no other key being pressed (a so-called "tap"). 
     There should be an optional modifier too - something that, when typed 
-    before or during another key, slightly modifies the action.
+    before or during another key, slightly modifies the action. Does the order 
+    ever matter when pressing a conjunction of keys? What about disabling or 
+    passing through all undefined keys - to make a mode that is completely 
+    seperate from the usual keyconfig of a program, for example?
 
 -   There should be a robust way to handle conflicting keybindings. (Monoid?)
 
 -   The software should be able to respond to events that are not triggered by 
     the keyboard: spawning an X window, spawning a virtual terminal, etcetera.
+
+
