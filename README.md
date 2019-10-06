@@ -4,7 +4,8 @@ heks (work-in-progress)
 `heks` (**h**andler for **e**vents and **k**eyboard **s**hortcuts) aims to 
 provide a unified interface between the buttons you press and corresponding 
 actions by your computer. It was inspired by 
-[sxhkd](https://github.com/baskerville/sxhkd).
+[sxhkd](https://github.com/baskerville/sxhkd). I also intend to borrow some 
+ideas from [kmonad](https://github.com/david-janssen/kmonad).
 
 A mouse is often not efficient and a touchscreen can be unwieldy. Making 
 gestures with your fingertips to make things happen can feel like performing a 
